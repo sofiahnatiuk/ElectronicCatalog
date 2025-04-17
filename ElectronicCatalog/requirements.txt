@@ -1,0 +1,6 @@
+Django>=4.2
+djangorestframework
+psycopg2-binary
+drf-yasg
+beautifulsoup4
+requests

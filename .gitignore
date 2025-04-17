@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.env
+
+# Virtual environments
+venv/
+env/
+. .venv/
+ENV/
+
+.idea
+
+# Django
+*.log
+*.pot
+
+# VS Code
+.vscode/
+
+# Pytest / Coverage / Testing
+.coverage
+htmlcov/
+.tox/
+pytest_cache/
+
+# Docker
+*.pid
+*.seed
+*.seed.*
+*.bak
+*.backup
+*.orig
+*.swp
+
+# Env files
+ElectronicCatalog/.env
+.env.*
+
+# Docker volumes and build files
+pg_data/
+*.db
+
+build/
+/.idea
+/.venv
