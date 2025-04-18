@@ -5,3 +5,4 @@ drf-yasg
 beautifulsoup4
 requests
 drf-spectacular
+djangorestframework-simplejwt

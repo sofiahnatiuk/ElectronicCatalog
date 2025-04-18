@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
+from datetime import timedelta
 
 from pathlib import Path
 
@@ -44,12 +45,21 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 }
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Electronic Catalog API',
     'DESCRIPTION': 'API documentation for the Electronic Catalog Project',
     'VERSION': '1.0.0',
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
+    'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
 MIDDLEWARE = [
