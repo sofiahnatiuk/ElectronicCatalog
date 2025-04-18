@@ -4,3 +4,4 @@ psycopg2-binary
 drf-yasg
 beautifulsoup4
 requests
+drf-spectacular
