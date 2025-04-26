@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 
+
 class Category(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
@@ -28,7 +29,7 @@ class Component(models.Model):
     )
     name = models.CharField(max_length=255)
     image_url = models.URLField(blank=True)
-    properties = models.JSONField()
+    properties = models.JSONField(default=dict)
 
     class Meta:
         verbose_name = "Component"
