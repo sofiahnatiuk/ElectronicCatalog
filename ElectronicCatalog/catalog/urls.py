@@ -4,7 +4,9 @@ from .views import (
     ComponentDetailView,
     ComponentCreateView,
     ComponentUpdateView,
-    ComponentDeleteView
+    ComponentDeleteView,
+    CategoryListView,
+    CategoryDetailView,
 )
 
 urlpatterns = [
@@ -13,4 +15,6 @@ urlpatterns = [
     path('components/create/', ComponentCreateView.as_view(), name='component-create'),
     path('components/<int:pk>/update/', ComponentUpdateView.as_view(), name='component-update'),
     path('components/<int:pk>/delete/', ComponentDeleteView.as_view(), name='component-delete'),
+    path('categories/', CategoryListView.as_view(), name='category-list'),
+    path('categories/<int:pk>/', CategoryDetailView.as_view(), name='category-detail'),
 ]
