@@ -10,7 +10,7 @@ from .filters import ComponentFilter
 from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q
-from django.db.models import Value, F, FloatField, Textfield
+from django.db.models import Value, F, FloatField, TextField
 from django.db.models.functions import Cast
 
 
@@ -40,16 +40,24 @@ class CategoryComponentListView(generics.ListAPIView):
 
         # --- Custom sorting by property ---
         ordering = self.request.query_params.get('ordering')
+        sort_type = self.request.query_params.get('sort_type', 'text')  # <--- NEW
+
         if ordering:
             if ordering.startswith('prop__') or ordering.startswith('-prop__'):
                 desc = ordering.startswith('-')
                 prop_field = ordering.lstrip('-').split('prop__', 1)[1]
 
-                # Annotate the property value so we can order by it
+                # --- Detect sorting type ---
+                if sort_type == 'float':
+                    field_type = FloatField()
+                else:
+                    field_type = TextField()
+
+                # Annotate with appropriate field type
                 queryset = queryset.annotate(
                     prop_value=Cast(
                         F(f"properties__{prop_field}"),
-                        output_field=TextField()  # or FloatField() if you know it’s numeric
+                        output_field=field_type
                     )
                 )
 
