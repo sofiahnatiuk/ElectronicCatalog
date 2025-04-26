@@ -1,18 +1,34 @@
 from rest_framework import generics, permissions
-from .models import Component
-from .serializers import ComponentSerializer
-from rest_framework import generics
-from .models import Category
-from .serializers import CategorySerializer, CategoryDetailSerializer
+from .models import Component, Category
+from .serializers import(
+    ComponentSerializer,
+    CategorySerializer,
+    CategoryDetailSerializer,
+    ComponentListSerializer,
+)
+from .filters import ComponentFilter
+from rest_framework import generics, filters
+from django_filters.rest_framework import DjangoFilterBackend
+
+class CategoryComponentListView(generics.ListAPIView):
+    serializer_class = ComponentListSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_class = ComponentFilter
+    search_fields = ['name']
+
+    def get_queryset(self):
+        category_id = self.kwargs['pk']
+        return Component.objects.filter(category_id=category_id)
+
 
 class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.filter(parent__isnull=True)
     serializer_class = CategorySerializer
 
+
 class CategoryDetailView(generics.RetrieveAPIView):
     queryset = Category.objects.all()
     serializer_class = CategoryDetailSerializer
-
 
 
 class ComponentListView(generics.ListAPIView):

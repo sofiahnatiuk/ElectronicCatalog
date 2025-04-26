@@ -7,6 +7,7 @@ from .views import (
     ComponentDeleteView,
     CategoryListView,
     CategoryDetailView,
+    CategoryComponentListView,
 )
 
 urlpatterns = [
@@ -17,4 +18,5 @@ urlpatterns = [
     path('components/<int:pk>/delete/', ComponentDeleteView.as_view(), name='component-delete'),
     path('categories/', CategoryListView.as_view(), name='category-list'),
     path('categories/<int:pk>/', CategoryDetailView.as_view(), name='category-detail'),
+    path('categories/<int:pk>/components/', CategoryComponentListView.as_view(), name='category-components'),
 ]

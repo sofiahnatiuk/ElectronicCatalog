@@ -6,3 +6,4 @@ beautifulsoup4
 requests
 drf-spectacular
 djangorestframework-simplejwt
+django-filter
