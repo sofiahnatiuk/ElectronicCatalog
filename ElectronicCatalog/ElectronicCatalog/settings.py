@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'drf_spectacular',
     'users',
+    'catalog',
 ]
 
 REST_FRAMEWORK = {
